@@ -2,14 +2,14 @@
 
 namespace Venta\Console;
 
-use Venta\Application\ExtensionProvider;
+use Venta\Application\Extensions\Provider;
 
 /**
  * Class ConsoleExtensionProvider
  *
  * @package Venta\Console
  */
-class ConsoleExtensionProvider extends ExtensionProvider
+class ConsoleExtensionProvider extends Provider
 {
     /**
      * {@inheritdoc}
@@ -19,7 +19,7 @@ class ConsoleExtensionProvider extends ExtensionProvider
         return [
             [
                 'alias' => \Venta\Application\Interfaces\ConsoleKernelInterface::class,
-                'item' => \Venta\Application\Kernel\ConsoleKernel::class
+                'item' => \Venta\Console\Kernel\ConsoleKernel::class
             ],
             [
                 'alias' => \Venta\Console\Interfaces\ConsoleHandlerInterface::class,
