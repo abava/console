@@ -64,10 +64,6 @@ class Console implements ConsoleHandlerInterface
      */
     protected function _collectCommands()
     {
-        $commands = $this->_app->getCommands();
-
-        foreach ($commands as $command) {
-            $this->_console->add(new $command);
-        }
+        
     }
 }
