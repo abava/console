@@ -2,29 +2,23 @@
 
 namespace Venta\Console;
 
-use Venta\Application\Extensions\Provider;
+use Venta\ExtensionsLoader\ExtensionProvider;
 
 /**
  * Class ConsoleExtensionProvider
  *
  * @package Venta\Console
  */
-class ConsoleExtensionProvider extends Provider
+class ConsoleExtensionProvider extends ExtensionProvider
 {
     /**
      * {@inheritdoc}
      */
-    public function bindings()
+    public function bindings($container)
     {
-        return [
-            [
-                'alias' => \Venta\Application\Interfaces\ConsoleKernelInterface::class,
-                'item' => \Venta\Console\Kernel\ConsoleKernel::class
-            ],
-            [
-                'alias' => \Venta\Console\Interfaces\ConsoleHandlerInterface::class,
-                'item' => \Venta\Console\Console::class
-            ]
-        ];
+        $container->bind(
+            \Venta\Contracts\Kernel\ConsoleKernelContract::class,
+            \Venta\Console\Kernel\ConsoleKernel::class
+        );
     }
 }

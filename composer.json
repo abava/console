@@ -11,6 +11,16 @@
             "email": "raivis@scandiweb.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventacommerce/contracts.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ventacommerce/extensions-loader.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Venta\\Console\\": "src/"
@@ -21,6 +31,8 @@
         "phpunit/phpunit": "5.2"
     },
     "require": {
-        "symfony/console": "3.0.*"
+        "symfony/console": "3.0.*",
+        "venta/contracts": "dev-master",
+        "venta/extensions-loader": "dev-master"
     }
 }
