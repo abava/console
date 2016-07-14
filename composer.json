@@ -1,6 +1,6 @@
 {
-    "name": "ventaframework/console",
-    "description": "Venta Framework Console package",
+    "name": "abava/console",
+    "description": "The Abava Console package",
     "authors": [
         {
             "name": "Konstantins Zukovs",
@@ -18,7 +18,7 @@
     "repositories": [],
     "autoload": {
         "psr-4": {
-            "Venta\\Console\\": "src/"
+            "Abava\\Console\\": "src/"
         }
     },
     "minimum-stability": "stable",
@@ -26,6 +26,6 @@
         "phpunit/phpunit": "^5.4"
     },
     "require": {
-        "symfony/console": "^3.2"
+        "symfony/console": "^3.1"
     }
 }
