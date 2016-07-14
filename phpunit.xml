@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Venta eCommerce Framework Console package tests">
+        <testsuite name="Abava Console package tests">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
