@@ -19,20 +19,6 @@ abstract class Command extends BaseCommand implements CommandContract
 {
 
     /**
-     * Command arguments array
-     *
-     * @var array|InputArgument[]
-     */
-    protected $arguments = [];
-
-    /**
-     * Command options array
-     *
-     * @var array|InputOption[]
-     */
-    protected $options = [];
-
-    /**
      * Input instance passed to handle method
      *
      * @var InputInterface
@@ -56,20 +42,20 @@ abstract class Command extends BaseCommand implements CommandContract
         $this->setName($signature['name']);
         $this->setDescription($this->description());
 
-        if (is_array($signature['arguments'])) {
+        if (is_array($signature['arguments']) && count($signature['arguments']) > 0) {
             foreach ($signature['arguments'] as $argument) {
                 $this->addArgument($argument['name'], $argument['type'], $argument['description'], $argument['default']);
             }
         } else {
-            $this->getDefinition()->addArguments($this->arguments);
+            $this->getDefinition()->addArguments($this->returnArguments());
         }
 
-        if (is_array($signature['options'])) {
+        if (is_array($signature['options']) && count($signature['options']) > 0) {
             foreach ($signature['options'] as $option) {
                 $this->addOption($option['name'], null, $option['type'], $option['description'], $option['default']);
             }
         } else {
-            $this->getDefinition()->addOptions($this->options);
+            $this->getDefinition()->addOptions($this->returnOptions());
         }
     }
 
@@ -146,6 +132,28 @@ abstract class Command extends BaseCommand implements CommandContract
     public function writeln(string $string, int $options = 0)
     {
         $this->output->writeln($string, $options);
+    }
+
+    /**
+     * Returns command arguments array
+     * Values must be instances of InputArgument
+     *
+     * @return array|InputArgument[]
+     */
+    public function returnArguments(): array
+    {
+        return [];
+    }
+
+    /**
+     * Returns command options array
+     * Values must be instances of InputOption
+     *
+     * @return array|InputOption[]
+     */
+    public function returnOptions(): array
+    {
+        return [];
     }
 
 }
