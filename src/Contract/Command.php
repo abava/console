@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Venta\Console\Contract;
+namespace Abava\Console\Contract;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Interface Command
  *
- * @package Venta\Console
+ * @package Abava\Console
  */
 interface Command
 {

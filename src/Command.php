@@ -1,19 +1,19 @@
 <?php
 
-namespace Venta\Console;
+namespace Abava\Console;
 
+use Abava\Console\Command\SignatureParser;
+use Abava\Console\Contract\Command as CommandContract;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\{
     InputArgument, InputInterface, InputOption
 };
 use Symfony\Component\Console\Output\OutputInterface;
-use Venta\Console\Command\SignatureParser;
-use Venta\Console\Contract\Command as CommandContract;
 
 /**
  * Class Command
  *
- * @package Venta\Console
+ * @package Abava\Console
  */
 abstract class Command extends BaseCommand implements CommandContract
 {

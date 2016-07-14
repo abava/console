@@ -1,14 +1,14 @@
 <?php
 
-namespace Venta\Console\Command;
+namespace Abava\Console\Command;
 
+use Abava\Console\Contract\SignatureParser as SignatureParserContract;
 use Symfony\Component\Console\Input\InputArgument;
-use Venta\Console\Contract\SignatureParser as SignatureParserContract;
 
 /**
  * Class SignatureParser
  *
- * @package Venta\Console
+ * @package Abava\Console
  */
 class SignatureParser implements SignatureParserContract
 {

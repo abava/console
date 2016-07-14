@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Venta\Console\Contract;
+namespace Abava\Console\Contract;
 
 /**
  * Interface SignatureParser
  *
- * @package Venta\Console\Contract
+ * @package Abava\Console\Contract
  */
 interface SignatureParser
 {
