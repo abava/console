@@ -1,27 +1,30 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Venta\Console\Interfaces;
+namespace Venta\Console\Contract;
+
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Interface CommandInterface
+ * Interface Command
  *
  * @package Venta\Console
  */
-interface CommandInterface
+interface Command
 {
     /**
      * Should return string with command signature
      *
      * @return string
      */
-    public function signature();
+    public function signature(): string;
 
     /**
      * Returns command description text
      *
      * @return string
      */
-    public function description();
+    public function description(): string;
 
     /**
      * Main command function, which is executed on command run
@@ -30,5 +33,6 @@ interface CommandInterface
      * @param  \Symfony\Component\Console\Output\OutputInterface $output
      * @return null|int
      */
-    public function handle($input, $output);
+    public function handle(InputInterface $input, OutputInterface $output);
+
 }

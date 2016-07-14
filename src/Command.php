@@ -3,24 +3,55 @@
 namespace Venta\Console;
 
 use Symfony\Component\Console\Command\Command as BaseCommand;
-use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\{
+    InputArgument, InputInterface, InputOption
+};
 use Symfony\Component\Console\Output\OutputInterface;
 use Venta\Console\Command\SignatureParser;
-use Venta\Console\Interfaces\CommandInterface;
+use Venta\Console\Contract\Command as CommandContract;
 
 /**
  * Class Command
  *
  * @package Venta\Console
  */
-abstract class Command extends BaseCommand implements CommandInterface
+abstract class Command extends BaseCommand implements CommandContract
 {
+
+    /**
+     * Command arguments array
+     *
+     * @var array|InputArgument[]
+     */
+    protected $arguments = [];
+
+    /**
+     * Command options array
+     *
+     * @var array|InputOption[]
+     */
+    protected $options = [];
+
+    /**
+     * Input instance passed to handle method
+     *
+     * @var InputInterface
+     */
+    protected $input;
+
+    /**
+     * Output instance passed to handle method
+     *
+     * @var OutputInterface
+     */
+    protected $output;
+
     /**
      * {@inheritdoc}
      */
     public function configure()
     {
-        $signature = (new SignatureParser($this->signature()))->parse();
+        $signature = (new SignatureParser())->parse($this->signature());
 
         $this->setName($signature['name']);
         $this->setDescription($this->description());
@@ -29,28 +60,92 @@ abstract class Command extends BaseCommand implements CommandInterface
             foreach ($signature['arguments'] as $argument) {
                 $this->addArgument($argument['name'], $argument['type'], $argument['description'], $argument['default']);
             }
+        } else {
+            $this->getDefinition()->addArguments($this->arguments);
         }
 
         if (is_array($signature['options'])) {
             foreach ($signature['options'] as $option) {
                 $this->addOption($option['name'], null, $option['type'], $option['description'], $option['default']);
             }
+        } else {
+            $this->getDefinition()->addOptions($this->options);
         }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function execute(InputInterface $input, OutputInterface $output)
+    final protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->input = $input;
+        $this->output = $output;
         return $this->handle($input, $output);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function description()
+    public function description(): string
     {
-        return null;
+        return '';
     }
+
+    /**
+     * Making method final to restrict overwrite
+     *
+     * {@inheritdoc}
+     */
+    final public function run(InputInterface $input, OutputInterface $output): int
+    {
+        return parent::run($input, $output);
+    }
+
+    /**
+     * Helper method to get input argument
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function arg(string $name)
+    {
+        return $this->input->getArgument($name);
+    }
+
+    /**
+     * Helper method to get input option
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function opt(string $name)
+    {
+        return $this->input->getOption($name);
+    }
+
+    /**
+     * Helper method to write string to output
+     *
+     * @param string $string
+     * @param bool $newline
+     * @param int $options
+     * @return void
+     */
+    public function write(string $string, bool $newline = false, int $options = 0)
+    {
+        $this->output->write($string, $newline, $options);
+    }
+
+    /**
+     * Helper method to write string with new line to output
+     *
+     * @param string $string
+     * @param int $options
+     * @return void
+     */
+    public function writeln(string $string, int $options = 0)
+    {
+        $this->output->writeln($string, $options);
+    }
+
 }
