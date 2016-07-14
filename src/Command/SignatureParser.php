@@ -3,14 +3,14 @@
 namespace Venta\Console\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
-use Venta\Console\Command\Interfaces\SignatureParserInterface;
+use Venta\Console\Contract\SignatureParser as SignatureParserContract;
 
 /**
  * Class SignatureParser
  *
  * @package Venta\Console
  */
-class SignatureParser implements SignatureParserInterface
+class SignatureParser implements SignatureParserContract
 {
     /**
      * Full signature string holder
@@ -35,20 +35,12 @@ class SignatureParser implements SignatureParserInterface
     protected $_parametersMatcher = '/{(.*?)}/';
 
     /**
-     * {@inheritdoc}
-     */
-    public function __construct($signature)
-    {
-        $this->_signature = $signature;
-    }
-
-    /**
      * @throws \Exception
      * {@inheritdoc}
      */
-    public function parse()
+    public function parse(string $signature): array
     {
-        $signature = explode(' ', $this->_signature);
+        $signature = explode(' ', $this->_signature = $signature);
 
         return array_merge($this->_parseParameters(), [
             'name' => array_shift($signature)
