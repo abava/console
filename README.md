@@ -1,2 +1,1 @@
-# Venta eCommerce Console package
-Updated
+# Abava Console package
