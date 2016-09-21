@@ -1,14 +1,10 @@
 {
-    "name": "abava/console",
-    "description": "The Abava Console package",
+    "name": "venta/console",
+    "description": "The Venta Console package",
     "authors": [
         {
             "name": "Konstantins Zukovs",
             "email": "kz@scandiweb.com"
-        },
-        {
-            "name": "Raivis Vitols",
-            "email": "raivis@scandiweb.com"
         },
         {
             "name": "Alexey Rehov",
@@ -23,10 +19,9 @@
             "email": "ilja@scandiweb.com"
         }
     ],
-    "repositories": [],
     "autoload": {
         "psr-4": {
-            "Abava\\Console\\": "/"
+            "Venta\\Console\\": ""
         },
         "exclude-from-classmap": [
             "/tests/"
@@ -34,10 +29,11 @@
     },
     "minimum-stability": "stable",
     "require-dev": {
-        "phpunit/phpunit": "^5.4"
+        "phpunit/phpunit": "^5.4",
+        "mockery/mockery": "^0.9.5"
     },
     "require": {
-        "php": "~7.0",
+        "php": "^7.0",
         "symfony/console": "^3.1"
     }
 }

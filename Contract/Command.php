@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Abava\Console\Contract;
+namespace Venta\Console\Contract;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -8,17 +8,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * Interface Command
  *
- * @package Abava\Console
+ * @package Venta\Console
  */
 interface Command
 {
-    /**
-     * Should return string with command signature
-     *
-     * @return string
-     */
-    public function signature(): string;
-
     /**
      * Returns command description text
      *
@@ -34,5 +27,12 @@ interface Command
      * @return null|int
      */
     public function handle(InputInterface $input, OutputInterface $output);
+
+    /**
+     * Should return string with command signature
+     *
+     * @return string
+     */
+    public function signature(): string;
 
 }

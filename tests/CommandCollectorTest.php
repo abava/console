@@ -1,7 +1,7 @@
 <?php
 
-use Abava\Console\Command\Collector;
-use Abava\Container\Contract\Container;
+use Venta\Console\Command\Collector;
+use Venta\Container\Contract\Container;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -9,6 +9,11 @@ use PHPUnit\Framework\TestCase;
  */
 class CommandCollectorTest extends TestCase
 {
+
+    public function tearDown()
+    {
+        Mockery::close();
+    }
 
     /**
      * @test
@@ -32,20 +37,15 @@ class CommandCollectorTest extends TestCase
     public function canHandleInvalidCommandClassName()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Provided command "stdClass" doesn\'t extend Abava\Console\Command class.');
+        $this->expectExceptionMessage('Provided command "stdClass" doesn\'t extend Venta\Console\Command class.');
 
         $collector = new Collector(Mockery::mock(Container::class));
         $collector->addCommand(stdClass::class);
     }
 
-    public function tearDown()
-    {
-        Mockery::close();
-    }
-
 }
 
-abstract class MockCommand extends \Abava\Console\Command
+abstract class MockCommand extends \Venta\Console\Command
 {
 
 }

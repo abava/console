@@ -1,23 +1,18 @@
 <?php declare(strict_types = 1);
 
-namespace Abava\Console\Command;
+namespace Venta\Console\Command;
 
-use Abava\Console\Contract\Collector as CollectorContract;
-use Abava\Console\Contract\Command;
-use Abava\Container\Contract\Container;
+use Venta\Console\Contract\Collector as CollectorContract;
+use Venta\Console\Contract\Command;
+use Venta\Container\Contract\Container;
 
 /**
  * Class Collector
  *
- * @package Abava\Console\Command
+ * @package Venta\Console\Command
  */
 class Collector implements CollectorContract
 {
-
-    /**
-     * @var Container
-     */
-    protected $container;
 
     /**
      * Commands holder
@@ -25,6 +20,11 @@ class Collector implements CollectorContract
      * @var Command[]
      */
     protected $commands = [];
+
+    /**
+     * @var Container
+     */
+    protected $container;
 
     public function __construct(Container $container)
     {
@@ -36,9 +36,9 @@ class Collector implements CollectorContract
      */
     public function addCommand(string $commandClassName)
     {
-        if (!is_subclass_of($commandClassName, \Abava\Console\Command::class)) {
+        if (!is_subclass_of($commandClassName, \Venta\Console\Command::class)) {
             throw new \InvalidArgumentException(
-                sprintf('Provided command "%s" doesn\'t extend Abava\Console\Command class.', $commandClassName)
+                sprintf('Provided command "%s" doesn\'t extend Venta\Console\Command class.', $commandClassName)
             );
         }
         $this->commands[] = $commandClassName;

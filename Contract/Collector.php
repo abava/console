@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Abava\Console\Contract;
+namespace Venta\Console\Contract;
 
 /**
  * Interface Collector
  *
- * @package Abava\Console\Contract
+ * @package Venta\Console\Contracts
  */
 interface Collector
 {
