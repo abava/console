@@ -2,22 +2,22 @@
 
 namespace Venta\Console\Command;
 
-use Venta\Console\Contract\Collector as CollectorContract;
-use Venta\Console\Contract\Command;
-use Venta\Container\Contract\Container;
+use Venta\Contracts\Console\Command;
+use Venta\Contracts\Console\CommandCollector as CommandCollectorContract;
+use Venta\Contracts\Container\Container;
 
 /**
  * Class Collector
  *
  * @package Venta\Console\Command
  */
-class Collector implements CollectorContract
+class CommandCollector implements CommandCollectorContract
 {
 
     /**
      * Commands holder
      *
-     * @var Command[]
+     * @var \Venta\Contracts\Console\Command[]
      */
     protected $commands = [];
 
